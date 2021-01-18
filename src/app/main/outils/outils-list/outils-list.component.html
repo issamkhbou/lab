@@ -1,46 +1,30 @@
-<div class="my-16" fxLayout="row" fxLayoutAlign="end center">
-  <button mat-raised-button color="primary" routerLink="create">
-    <mat-icon class="s-24 mr-4">add</mat-icon>
-    Create New
-  </button>
-
+<div class="card">
+  <div class="card-header">
+    <h4> Posts List</h4>
+  </div>
+  <table class="table table-striped" *ngIf="!!dataSource">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Date</th>
+      <th>Source</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let outil of dataSource ; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{outil.date}}</td>
+      <td>{{outil.source}}</td>
+      <td>
+        <a [routerLink]="'/outils/'+outil.id + '/edit'" class="btn btn-secondary"
+           [state]="{ lastRoute:'profile' }">
+          <i class="fas fa-angle-double-right"></i> Details
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100-p">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell class="px-12" *matHeaderCellDef> ID</th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="date">
-    <th mat-header-cell class="px-12" *matHeaderCellDef>date</th>
-    <td mat-cell class="px-12" *matCellDef="let element">
-      {{element.date | date :'d MMMM y, HH:mm'}}
-    </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="source">
-    <th mat-header-cell class="px-12" *matHeaderCellDef> source</th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.source}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="actions" stickyEnd>
-    <th mat-header-cell class="px-12 w-120" *matHeaderCellDef></th>
-    <td mat-cell class="px-12 w-120" *matCellDef="let element">
-      <button mat-icon-button [routerLink]="element.id + '/edit'">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
 

@@ -1,1 +1,78 @@
-<p>profile works!</p>
+<!-- HEADER -->
+<header id="main-header" class="py-2 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          <i class="fas fa-cog"></i> Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ADD ACTIONS -->
+<section id="actions" class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <a  routerLink="/publications/create" [state]="{ lastRoute:'profile' }" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+          <i class="fas fa-plus"></i> Add Post
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a routerLink="/evenements/create" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
+          <i class="fas fa-plus"></i> Add Event
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a routerLink="/outils/create" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+          <i class="fas fa-plus"></i> Add Tool
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--<app-admin-dashboard></app-admin-dashboard>-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+<!--      <app-publication-list></app-publication-list>-->
+      <router-outlet></router-outlet>
+    </div>
+
+    <!--LEFT SHOWCASE-->
+    <div class="col-md-3" *ngIf="nombrePublications">
+      <div class="card text-center bg-primary text-white mb-3">
+        <div class="card-body">
+          <h3>Posts</h3>
+          <h4 class="display-4">
+            <i class="fas fa-pencil-alt fa-4x"></i> {{nombrePublications}}
+          </h4>
+          <a routerLink="/profile" class="btn btn-outline-light btn-sm">View</a>
+        </div>
+      </div>
+
+      <div class="card text-center bg-success text-white mb-3"  *ngIf="nombreEvenements">
+        <div class="card-body">
+          <h3>Events</h3>
+          <h4 class="display-4">
+            <i class="fas fa-folder fa-4x"></i> {{nombreEvenements}}
+          </h4>
+          <a routerLink="/events-list" class="btn btn-outline-light btn-sm">View</a>
+        </div>
+      </div>
+
+      <div class="card text-center bg-warning text-white mb-3" *ngIf="nombreOutils">
+        <div class="card-body">
+          <h3>Tools</h3>
+          <h4 class="display-4">
+            <i class="fas fa-users fa-4x"></i> {{nombreOutils}}
+          </h4>
+          <a routerLink="/tools-list" class="btn btn-outline-light btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

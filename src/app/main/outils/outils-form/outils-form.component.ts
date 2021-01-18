@@ -3,7 +3,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {OutilsService} from "../../../../services/outils.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Outil} from "../../../../models/outil.model";
-import {map} from "rxjs/operators";
+import {map, takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
+import {Publication} from "../../../../models/publication.model";
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmDialogComponent} from "../../../../@root/components/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-outils-form',
@@ -11,20 +15,29 @@ import {map} from "rxjs/operators";
   styleUrls: ['./outils-form.component.scss']
 })
 export class OutilsFormComponent implements OnInit {
+  protected _onDestroy = new Subject<void>();
+
   currentItemId: string;
   item: Outil;
   form: FormGroup;
   state$;
-  lastRoute: string;
+  lastRoute = "";
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private outilsService: OutilsService,
+    private dialog: MatDialog,
   ) {
   }
 
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
   ngOnInit(): void {
+
     this.state$ = this.activatedRoute.paramMap
       .pipe(map(() => window.history.state))
     this.state$.subscribe(data => {
@@ -46,10 +59,8 @@ export class OutilsFormComponent implements OnInit {
 
   initForm(item: Outil) {
     this.form = new FormGroup({
-
-      date: new FormControl(item?.date, [Validators.required]),
       source: new FormControl(item?.source, [Validators.required]),
-
+      date: new FormControl(item?.date)
     });
   }
 
@@ -59,14 +70,31 @@ export class OutilsFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const objectToSubmit: Outil = {...this.item, ...this.form.value};
-    console.log(objectToSubmit);
+    const objectToSubmit: Publication = {...this.item, ...this.form.value};
+    console.log(this.form.value);
     this.outilsService.saveOutil(objectToSubmit).then(() => {
-      if (this.lastRoute=="profile") {
-        this.router.navigate(['./profile'])
+
+      if (this.lastRoute == "profile") {
+        this.router.navigate(['/profile'])
+      } else {
+        this.router.navigate(['/publications'])
       }
-      else {
-        this.router.navigate(['./outils'])
+    });
+
+  }
+
+  onRemovePub(id: any): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      hasBackdrop: true,
+      disableClose: false,
+    });
+
+    dialogRef.componentInstance.confirmButtonColor = 'warn';
+
+    dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(isDeleteConfirmed => {
+      console.log('removing: ', isDeleteConfirmed);
+      if (isDeleteConfirmed) {
+        this.outilsService.removeOutilById(id).then(() => this.router.navigateByUrl("/profile"));
       }
     });
 

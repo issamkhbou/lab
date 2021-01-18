@@ -1,22 +1,66 @@
-<div class="container">
-
-  <h4>{{isFormInEditMode() ? 'Edit tool' : 'Create New tool'}}</h4>
-
-  <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
-
-    <mat-form-field>
-      <input matInput placeholder="date" formControlName="date">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="source" formControlName="source">
-    </mat-form-field>
-
-
-
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
+<!-- HEADER -->
+<header id="main-header" class="py-2 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 *ngIf="!!item">
+          Outil: {{item.id}}</h1>
+      </div>
     </div>
+  </div>
+</header>
 
-  </form>
-</div>
+<!-- ACTIONS -->
+<section id="actions" class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <a href="index.html" class="btn btn-light btn-block" routerLink="/profile">
+          <i class="fas fa-arrow-left"></i> Back To Dashboard
+        </a>
+      </div>
+
+      <div class="col-md-3" *ngIf="currentItemId">
+        <button  class="btn btn-danger btn-block" (click)="onRemovePub(currentItemId)">
+          <i class="fas fa-trash"></i> Delete Tool
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h4>{{currentItemId?"Edit Tool" :"Create Tool"}}</h4>
+          </div>
+          <div class="card-body">
+
+            <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" placeholder="date" formControlName="date">
+              </div>
+              <div class="form-group">
+                <label>Type</label>
+                <input type="text" class="form-control" placeholder="source" formControlName="source">
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" type="submit" [disabled]="form.invalid">Save
+                  Changes
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

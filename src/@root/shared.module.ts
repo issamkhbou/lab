@@ -5,7 +5,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ConfirmDialogModule} from "./components/confirm-dialog/confirm-dialog.module";
 import { LoadingComponent } from './components/loading/loading.component';
-import {NavbarComponent} from "./components/navbar/navbar.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {MastheadComponent} from "./components/masthead/masthead.component";
 
@@ -28,11 +27,10 @@ import {MastheadComponent} from "./components/masthead/masthead.component";
     ReactiveFormsModule,
     LoadingComponent ,
     ConfirmDialogModule,
-    NavbarComponent ,
     FooterComponent ,
     MastheadComponent
   ],
-  declarations: [LoadingComponent , NavbarComponent , FooterComponent ,MastheadComponent],
+  declarations: [LoadingComponent , FooterComponent ,MastheadComponent],
 })
 export class SharedModule {
 }
