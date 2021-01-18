@@ -14,7 +14,7 @@ import {PublicationFormComponent} from "./main/publication/publication-form/publ
 import { ProfileComponent } from './profile/profile.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import {SharedModule} from "../@root/shared.module";
+import {SharedModule} from "../@root/shared.module";
 import {OutilsListComponent} from './main/outils/outils-list/outils-list.component';
 import {OutilsFormComponent} from './main/outils/outils-form/outils-form.component';
 //import {EvenementListComponent} from './main/evenement/evenement-list/evenement-list.component';
@@ -31,7 +31,7 @@ import {OutilsFormComponent} from './main/outils/outils-form/outils-form.compone
     OutilsListComponent,
     OutilsFormComponent,
     //EvenementListComponent,
-   // EvenementFormComponent,
+    //EvenementFormComponent,
     ProfileComponent
   ],
   imports: [
@@ -41,7 +41,8 @@ import {OutilsFormComponent} from './main/outils/outils-form/outils-form.compone
     FirebaseModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     PublicationService
