@@ -1,0 +1,110 @@
+{
+  "members": [
+    {
+      "id": "123456",
+      "cin": "123456",
+      "nom": "Chlegou",
+      "email": "houcem@enis.tn",
+      "dateNaissance": "2020-11-02T09:09:00Z",
+      "cv": "https://chlegou.com",
+      "prenom": "Houcem",
+      "phone" : "93837329"
+    },
+    {
+      "id": "4895",
+      "cin": "4895",
+      "nom": "Lahyeni",
+      "email": "imen@enis.tn",
+      "dateNaissance": "2020-11-02T09:09:00Z",
+      "cv": "https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "prenom": "Imen",
+      "phone" : "43835329"
+
+    },
+    {
+      "id": "3524",
+      "cin": "3524",
+      "nom": "lahyeni",
+      "email": "med.amin@stud.enis.tn",
+      "dateNaissance": "2020-11-02T18:09:00Z",
+      "cv": "https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "prenom": "Med Amin",
+      "phone" : "23837329"
+
+    },
+    {
+      "id": "3524",
+      "cin": "3524",
+      "nom": "khbou",
+      "email": "issam.khbou@stud.enis.tn",
+      "dateNaissance": "2020-11-02T18:09:00Z",
+      "cv": "https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "prenom": "issam",
+      "phone" : "53837329"
+
+    }
+  ],
+  "outils": [
+    {
+      "id": 1,
+      "date": "10/01/2021",
+      "source": "source1"
+    },
+    {
+      "id": 12,
+      "date": "10/01/2021",
+      "source": "source2"
+    },
+    {
+      "id": 13,
+      "date": "10/01/2021",
+      "source": "source3"
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "titre": "titre1",
+      "type": "type1",
+      "dateApparition": "10/01/2021",
+      "lien": "lien",
+      "sourcePdf": "sourcePdf"
+    },
+    {
+      "id": 2,
+      "titre": "titre12",
+      "type": "type12",
+      "dateApparition": "10/01/2021",
+      "lien": "lien2",
+      "sourcePdf": "sourcePdf2"
+    },
+    {
+      "id": 3,
+      "titre": "titre13",
+      "type": "type12",
+      "dateApparition": "10/01/2021",
+      "lien": "lien3",
+      "sourcePdf": "sourcePdf3"
+    }
+  ],
+  "evenements": [
+    {
+      "id": 1,
+      "titre": "titreEvent1",
+      "date": "10/01/2021",
+      "lieu": "lieu1"
+    } ,
+    {
+      "id": 12,
+      "titre": "titre2",
+      "date": "10/01/2021",
+      "lieu": "lieu2"
+    } ,
+    {
+      "id": 13,
+      "titre": "titre3",
+      "date": "10/01/2021",
+      "lieu": "lieu3"
+    }
+  ]
+}
