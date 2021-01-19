@@ -5,6 +5,7 @@ import {Evenement} from "../../../../models/evenement.model";
 //import {ConfirmDialogComponent} from "../../../../@root/components/confirm-dialog/confirm-dialog.component";
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
+import { MemberService } from 'src/services/member.service';
 
 @Component({
   selector: 'app-evenement-list',
@@ -15,14 +16,16 @@ export class EvenementListComponent implements OnInit, OnDestroy {
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
-  displayedColumns: string[] = ['id', 'titre', 'date', 'lieu', 'actions'];
+  //displayedColumns: string[] = ['id', 'titre', 'type', 'dateApparition', 'lien', 'sourcePdf', 'actions'];
   dataSource: Evenement[] = [];
 
+  nombrePublications : Number ;
+  nombreEvenements : Number ;
+  nombreOutils : Number ;
   constructor(
-    private evenementService: EvenementService,
-    //private dialog: MatDialog,
-  ) {
-  }
+    private evenementService :EvenementService,
+    private memberService: MemberService
+  ) { }
 
 
   ngOnDestroy(): void {
@@ -32,26 +35,18 @@ export class EvenementListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.fetchDataSource();
+    this.memberService.getToolsByAuthorId("1").then(data=>this.nombreOutils=data.length)
+    this.memberService.geteventByAuthorId("1").then(data=>this.nombreEvenements=data.length)
+    this.memberService.getPostsByAuthorId("1").then(data=>this.nombrePublications=data.length)
+
   }
 
   private fetchDataSource(): void {
-    this.evenementService.getAllEvenements().then(data => this.dataSource = data);
-  }
+    this.evenementService.getAllEvenements().then(data => {
+      this.dataSource = data
+      console.log(this.dataSource);
 
-  // onRemoveAccount(id: any): void {
-  //   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-  //     hasBackdrop: true,
-  //     disableClose: false,
-  //   });
-  //
-  //   dialogRef.componentInstance.confirmButtonColor = 'warn';
-  //
-  //   dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(isDeleteConfirmed => {
-  //     console.log('removing: ', isDeleteConfirmed);
-  //     if (isDeleteConfirmed) {
-  //       this.evenementService.removeEvenementById(id).then(() => this.fetchDataSource());
-  //     }
-  //   });
-  // }
+    });
+  }
 }
 

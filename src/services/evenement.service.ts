@@ -17,6 +17,7 @@ export class EvenementService {
 
   getAllEvenements(): Promise<Evenement[]> {
     // return this.httpClient.get<Evenement[]>('linkToRestApi').toPromise();
+    
     return new Promise(resolve => resolve(this.placeholderEvenements));
   }
 

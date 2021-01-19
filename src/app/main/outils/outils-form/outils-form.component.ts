@@ -77,7 +77,7 @@ export class OutilsFormComponent implements OnInit {
       if (this.lastRoute == "profile") {
         this.router.navigate(['/profile'])
       } else {
-        this.router.navigate(['/publications'])
+        this.router.navigate(['/outils'])
       }
     });
 

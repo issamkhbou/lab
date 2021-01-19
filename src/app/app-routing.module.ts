@@ -9,6 +9,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {OutilsListComponent} from "./main/outils/outils-list/outils-list.component";
 import {OutilsFormComponent} from "./main/outils/outils-form/outils-form.component";
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 // import {EvenementListComponent} from "./main/evenement/evenement-list/evenement-list.component";
 // import {EvenementFormComponent} from "./main/evenement/evenement-form/evenement-form.component";
 
@@ -24,65 +25,21 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
   },
+
+  {
+    path: 'login',
+    pathMatch: 'full',
+    component: LoginComponent,
+  },
+
   {
     path: 'admin-dashboard',
     pathMatch: 'full',
     component: AdminDashboardComponent,
-  } ,
-  {
-    path: 'profile',
-    pathMatch: 'full',
-    component: ProfileComponent,
-  } ,
+  }
 
-  {
-    path: 'outils',
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: OutilsListComponent,
-      },
-      {
-        path: 'create',
-        pathMatch: 'full',
-        component: OutilsFormComponent,
-      },
-      {
-        path: ':id/edit',
-        pathMatch: 'full',
-        component: OutilsFormComponent,
-      },
-      {
-        path: '**',
-        redirectTo: '',
-      }
-    ]
-  },
-  {
-    path: 'publications',
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: PublicationListComponent,
-      },
-      {
-        path: 'create',
-        pathMatch: 'full',
-        component: PublicationFormComponent,
-      },
-      {
-        path: ':id/edit',
-        pathMatch: 'full',
-        component: PublicationFormComponent,
-      },
-      {
-        path: '**',
-        redirectTo: '',
-      }
-    ]
-  },
+
+
 ];
 
 @NgModule({
