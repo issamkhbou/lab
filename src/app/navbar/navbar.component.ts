@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import firebase from 'firebase'
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,15 +11,17 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn:boolean ; 
-  user ; 
+  //user ; 
   constructor(    private authService: AuthService,
-                  private router:Router
+                  private router:Router,
+                  public afAuth : AngularFireAuth , 
+
     ) { }
 
   ngOnInit(): void {
-    this.user = this.authService.getUserClaims() ; 
+   /*  this.user = this.authService.getUserClaims() ; 
     this.isLoggedIn = !!this.authService.getUserClaims()
-    console.log(this.user)
+    console.log(this.user) */
     
   }
 

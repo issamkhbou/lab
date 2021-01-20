@@ -30,4 +30,15 @@
   
   </div> -->
   
-  <button (click)="tryGoogleLogin()" >Sign in with Google</button>
+<!--   <button (click)="tryGoogleLogin()" >Sign in with Google</button>-->
+
+  <div *ngIf="!(afAuth.authState | async)">
+    <button appGoogleSignin >Sign in with Google</button>
+  </div>
+
+  <div  *ngIf="afAuth.authState | async as user">
+    <p>Welcome  {{user.displayName}} </p>
+    <button (click)="afAuth.auth.signOut()" >Logout</button>
+
+  </div>
+

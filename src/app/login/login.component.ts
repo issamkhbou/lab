@@ -1,7 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
-import firebase from "firebase";
+import { AngularFireAuth } from "@angular/fire/auth";
+
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import firebase from "firebase";
 export class LoginComponent implements OnInit {
 
   constructor(
+    public afAuth : AngularFireAuth , 
     private authService: AuthService,
     private router: Router,
     private ngZone: NgZone,

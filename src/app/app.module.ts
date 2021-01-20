@@ -21,6 +21,7 @@ import { CrudLabModule } from './main/crud-lab/crud-lab.module';
 import { CrudRoutingModule } from './main/crud-lab/crud-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from 'src/services/auth.service';
+import { GoogleSigninDirective } from './google-signin.directive';
 //import {EvenementListComponent} from './main/evenement/evenement-list/evenement-list.component';
 //import {EvenementFormComponent} from './main/evenement/evenement-form/evenement-form.component';
 
@@ -31,6 +32,7 @@ import { AuthService } from 'src/services/auth.service';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
+    GoogleSigninDirective,
 
   ],
   imports: [
