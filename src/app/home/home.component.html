@@ -1,2 +1,75 @@
-  
-<p>home works</p>
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('assets/home-bg.jpg')"> 
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Enis Lab</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row" *ngIf="!!allPubs">
+      <div class="col-lg-8 col-md-10 mx-auto" *ngFor="let pub of allPubs ; ">
+
+        <div class="post-preview">
+          <a >
+            <h2 class="post-title">
+              {{pub.titre}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{pub.type}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a>member1</a>
+            on {{pub.dateApparition}}</p>
+        </div>
+        <hr>
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
