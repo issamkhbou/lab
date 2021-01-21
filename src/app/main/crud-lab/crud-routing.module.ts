@@ -1,5 +1,6 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { EditProfileComponent } from 'src/app/profile/edit-profile/edit-profile.component';
 import { ProfileComponent } from 'src/app/profile/profile.component';
 import { EvenementFormComponent } from '../evenement/evenement-form/evenement-form.component';
 import { EvenementListComponent } from '../evenement/evenement-list/evenement-list.component';
@@ -8,21 +9,18 @@ import { OutilsListComponent } from '../outils/outils-list/outils-list.component
 import { PublicationFormComponent } from '../publication/publication-form/publication-form.component';
 import { PublicationListComponent } from '../publication/publication-list/publication-list.component';
 
-
-// import {EvenementListComponent} from "./main/evenement/evenement-list/evenement-list.component";
-// import {EvenementFormComponent} from "./main/evenement/evenement-form/evenement-form.component";
-
-
 const routes: Routes = [
-
-
   {
     path: 'profile',
     pathMatch: 'full',
     component: ProfileComponent,
   },
+  {
+    path: 'profile/edit',
+    pathMatch: 'full',
+    component: EditProfileComponent,
+  },
 
- 
   {
     path: 'outils',
     children: [
@@ -44,8 +42,8 @@ const routes: Routes = [
       {
         path: '**',
         redirectTo: '',
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'publications',
@@ -68,8 +66,8 @@ const routes: Routes = [
       {
         path: '**',
         redirectTo: '',
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'evenements',
@@ -92,14 +90,13 @@ const routes: Routes = [
       {
         path: '**',
         redirectTo: '',
-      }
-    ]
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CrudRoutingModule {
-}
+export class CrudRoutingModule {}

@@ -11,37 +11,35 @@ import { RouterModule } from '@angular/router';
 import { CrudRoutingModule } from './crud-routing.module';
 import { EvenementListComponent } from '../evenement/evenement-list/evenement-list.component';
 import { EvenementFormComponent } from '../evenement/evenement-form/evenement-form.component';
-
-
+import { EditProfileComponent } from 'src/app/profile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
-    PublicationListComponent ,
-    PublicationFormComponent,
-    OutilsListComponent,
-    OutilsFormComponent,
-    EvenementListComponent,
-    EvenementFormComponent,
-    ProfileComponent
-    
-  ],
-  imports: [
-    BrowserModule,  
-    ReactiveFormsModule,
-    FormsModule, 
-    RouterModule ,
-    CrudRoutingModule
-    
-  ] , 
-  exports:[
-    PublicationListComponent ,
+    PublicationListComponent,
     PublicationFormComponent,
     OutilsListComponent,
     OutilsFormComponent,
     EvenementListComponent,
     EvenementFormComponent,
     ProfileComponent,
-    
-  ]
+    EditProfileComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    CrudRoutingModule,
+  ],
+  exports: [
+    PublicationListComponent,
+    PublicationFormComponent,
+    OutilsListComponent,
+    OutilsFormComponent,
+    EvenementListComponent,
+    EvenementFormComponent,
+    ProfileComponent,
+    EditProfileComponent
+  ],
 })
-export class CrudLabModule { }
+export class CrudLabModule {}

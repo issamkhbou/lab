@@ -1,42 +1,82 @@
-import {Component, OnInit} from '@angular/core';
-import {PublicationService} from "../../services/publication.service";
-import {EvenementService} from "../../services/evenement.service";
-import {OutilsService} from "../../services/outils.service";
-import {MemberService} from "../../services/member.service";
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Member } from 'src/models/member.model';
+import { MemberService } from '../../services/member.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  nombrePublications : Number ;
-  nombreEvenements : Number ;
-  nombreOutils : Number ;
-  currentList="publications"
-  constructor(private memberService: MemberService , 
-              private route : ActivatedRoute) {
-  }
+  nombrePublications: number;
+  nombreEvenements: number;
+  nombreOutils: number;
+  currentList = 'publications';
+
+  id: number;
+  memberEmail: string;
+  member: any;
+  dataBaseMember: Member;
+  memberRole: string;
+  isStudent = true;
+
+  constructor(
+    private memberService: MemberService,
+    public afAuth: AngularFireAuth
+  ) {}
 
   ngOnInit(): void {
+    this.afAuth.authState.subscribe((user) => {
+      this.member = user;
+      this.memberEmail = this.member.email;
 
-    this.memberService.getToolsByAuthorId("1").then(data=>this.nombreOutils=data.length)
-    this.memberService.geteventByAuthorId("1").then(data=>this.nombreEvenements=data.length)
-    this.memberService.getPostsByAuthorId("1").then(data=>this.nombrePublications=data.length)
+      if (!!this.member) {
+        if (this.memberEmail.includes('stud')) {
+          this.memberRole = 'STUDENT_ROLE';
+        } else {
+          this.memberRole = 'TEACHER_ROLE';
+          this.isStudent = false;
+        }
+        console.log(this.memberRole);
+      }
+
+      this.memberService.getMemberByEmail(this.memberEmail).then((member) => {
+        this.dataBaseMember = member;
+        this.id = Number(this.dataBaseMember.id);
+
+        // TODO : change 1 to id when there is backend calls
+        this.memberService
+          .getToolsByAuthorId('1')
+          .then((data) => (this.nombreOutils = data.length));
+        this.memberService
+          .geteventByAuthorId('1')
+          .then((data) => (this.nombreEvenements = data.length));
+        this.memberService
+          .getPostsByAuthorId('1')
+          .then((data) => (this.nombrePublications = data.length));
+
+        /* console.log(
+          this.id +
+            ' ' +
+            this.dataBaseMember.email +
+            ' ' +
+            this.dataBaseMember.dateNaissance
+        ); */
+      });
+    });
   }
 
-  changeCurrentListToTools(){
-    this.currentList="outils"
+  changeCurrentListToTools() {
+    this.currentList = 'outils';
   }
 
-  changeCurrentListToPub(){
-    this.currentList="publications"
+  changeCurrentListToPub() {
+    this.currentList = 'publications';
   }
 
-  changeCurrentListToEvents(){
-    this.currentList="evenements"
+  changeCurrentListToEvents() {
+    this.currentList = 'evenements';
     console.log(this.currentList);
-    
   }
 }
