@@ -1,28 +1,35 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MemberService} from "../../../../services/member.service";
-import {Member} from "../../../../models/member.model";
-import {MatDialog} from "@angular/material/dialog";
-import {ConfirmDialogComponent} from "../../../../@root/components/confirm-dialog/confirm-dialog.component";
-import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MemberService } from '../../../../services/member.service';
+import { Member } from '../../../../models/member.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../../@root/components/confirm-dialog/confirm-dialog.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.scss']
+  styleUrls: ['./member-list.component.scss'],
 })
 export class MemberListComponent implements OnInit, OnDestroy {
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
-  displayedColumns: string[] = ['id', 'cin', 'nom', 'prenom', 'cv', 'dateNaissance', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'cin',
+    'nom',
+    'prenom',
+    'cv',
+    'dateNaissance',
+    'actions',
+  ];
   dataSource: Member[] = [];
 
   constructor(
-    private memberService :MemberService,
-    private dialog: MatDialog,
-  ) { }
-
+    private memberService: MemberService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnDestroy(): void {
     this._onDestroy.next();
@@ -34,7 +41,7 @@ export class MemberListComponent implements OnInit, OnDestroy {
   }
 
   private fetchDataSource(): void {
-    this.memberService.getAllMembers().then(data => this.dataSource = data);
+    this.memberService.getAllMembers().then((data) => (this.dataSource = data));
   }
 
   onRemoveAccount(id: any): void {
@@ -45,11 +52,16 @@ export class MemberListComponent implements OnInit, OnDestroy {
 
     dialogRef.componentInstance.confirmButtonColor = 'warn';
 
-    dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(isDeleteConfirmed => {
-      console.log('removing: ', isDeleteConfirmed);
-      if (isDeleteConfirmed) {
-        this.memberService.removeMemberById(id).then(() => this.fetchDataSource());
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe((isDeleteConfirmed) => {
+        console.log('removing: ', isDeleteConfirmed);
+        if (isDeleteConfirmed) {
+          this.memberService
+            .removeMemberById(id)
+            .then(() => this.fetchDataSource());
+        }
+      });
   }
 }

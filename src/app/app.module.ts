@@ -16,9 +16,7 @@ import { SharedModule } from '../@root/shared.module';
 
 import { CrudLabModule } from './main/crud-lab/crud-lab.module';
 import { CrudRoutingModule } from './main/crud-lab/crud-routing.module';
-import { LoginComponent } from './login/login.component';
 import { GoogleSigninDirective } from './google-signin.directive';
-
 
 @NgModule({
   declarations: [
@@ -26,7 +24,6 @@ import { GoogleSigninDirective } from './google-signin.directive';
     AdminDashboardComponent,
     HomeComponent,
     NavbarComponent,
-    LoginComponent,
     GoogleSigninDirective,
   ],
   imports: [

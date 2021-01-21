@@ -1,13 +1,9 @@
-import {NgModule} from '@angular/core';
-import {MaterialModule} from "./material/material.module";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ConfirmDialogModule} from "./components/confirm-dialog/confirm-dialog.module";
-import { LoadingComponent } from './components/loading/loading.component';
-import {FooterComponent} from "./components/footer/footer.component";
-import {MastheadComponent} from "./components/masthead/masthead.component";
-
+import { NgModule } from '@angular/core';
+import { MaterialModule } from './material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
 
 @NgModule({
   imports: [
@@ -25,12 +21,7 @@ import {MastheadComponent} from "./components/masthead/masthead.component";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    LoadingComponent ,
     ConfirmDialogModule,
-    FooterComponent ,
-    MastheadComponent
   ],
-  declarations: [LoadingComponent , FooterComponent ,MastheadComponent],
 })
-export class SharedModule {
-}
+export class SharedModule {}

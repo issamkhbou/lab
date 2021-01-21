@@ -54,9 +54,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <app-publication-list *ngIf="currentList=='publications'"></app-publication-list>
-      <app-outils-list *ngIf="currentList=='outils'"></app-outils-list>
-      <app-evenement-list *ngIf="currentList=='evenements'"></app-evenement-list>
+      <app-publication-list [dataSource]="posts" *ngIf="currentList=='publications'"></app-publication-list>
+      <app-outils-list  [dataSource]="tools" *ngIf="currentList=='outils'"></app-outils-list>
+      <app-evenement-list  [dataSource]="events" *ngIf="currentList=='evenements'"></app-evenement-list>
 
     </div>
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
-import firebase from 'firebase';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 @Component({

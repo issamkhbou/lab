@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MemberService} from "../../../../services/member.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Member} from "../../../../models/member.model";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MemberService } from '../../../../services/member.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Member } from '../../../../models/member.model';
 
 @Component({
   selector: 'app-member-form',
   templateUrl: './member-form.component.html',
-  styleUrls: ['./member-form.component.scss']
+  styleUrls: ['./member-form.component.scss'],
 })
 export class MemberFormComponent implements OnInit {
   currentItemId: string;
@@ -17,18 +17,17 @@ export class MemberFormComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private memberService: MemberService,
-  ) {
-  }
+    private memberService: MemberService
+  ) {}
 
   ngOnInit(): void {
     this.currentItemId = this.activatedRoute.snapshot.params.id;
 
     if (!!this.currentItemId) {
-      this.memberService.getMemberById(this.currentItemId).then(item => {
+      this.memberService.getMemberById(this.currentItemId).then((item) => {
         this.item = item;
-        console.log(item)
-        this.initForm(item)
+        console.log(item);
+        this.initForm(item);
       });
     } else {
       this.initForm(null);
@@ -37,24 +36,23 @@ export class MemberFormComponent implements OnInit {
 
   initForm(item: Member) {
     this.form = new FormGroup({
-
       cin: new FormControl(item?.cin, [Validators.required]),
       nom: new FormControl(item?.nom, [Validators.required]),
       cv: new FormControl(item?.cv, [Validators.required]),
       prenom: new FormControl(item?.prenom, [Validators.required]),
-      dateNaissance: new FormControl(item?.dateNaissance)
+      dateNaissance: new FormControl(item?.dateNaissance),
     });
   }
-
 
   isFormInEditMode(): boolean {
     return !!this.currentItemId;
   }
 
   onSubmit(): void {
-    const objectToSubmit: Member = {...this.item, ...this.form.value};
+    const objectToSubmit: Member = { ...this.item, ...this.form.value };
     console.log(objectToSubmit);
-    this.memberService.saveMember(objectToSubmit).then(() => this.router.navigate(['./members']));
-
+    this.memberService
+      .saveMember(objectToSubmit)
+      .then(() => this.router.navigate(['./members']));
   }
 }

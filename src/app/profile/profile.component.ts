@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Evenement } from 'src/models/evenement.model';
 import { Member } from 'src/models/member.model';
+import { Outil } from 'src/models/outil.model';
+import { Publication } from 'src/models/publication.model';
 import { MemberService } from '../../services/member.service';
 
 @Component({
@@ -18,8 +21,13 @@ export class ProfileComponent implements OnInit {
   memberEmail: string;
   member: any;
   dataBaseMember: Member;
+
   memberRole: string;
   isStudent = true;
+
+  posts: Publication[];
+  events: Evenement[];
+  tools: Outil[];
 
   constructor(
     private memberService: MemberService,
@@ -46,15 +54,18 @@ export class ProfileComponent implements OnInit {
         this.id = Number(this.dataBaseMember.id);
 
         // TODO : change 1 to id when there is backend calls
-        this.memberService
-          .getToolsByAuthorId('1')
-          .then((data) => (this.nombreOutils = data.length));
-        this.memberService
-          .geteventByAuthorId('1')
-          .then((data) => (this.nombreEvenements = data.length));
-        this.memberService
-          .getPostsByAuthorId('1')
-          .then((data) => (this.nombrePublications = data.length));
+        this.memberService.getToolsByAuthorId('1').then((data) => {
+          this.nombreOutils = data.length;
+          this.tools = data;
+        });
+        this.memberService.geteventByAuthorId('1').then((data) => {
+          this.nombreEvenements = data.length;
+          this.events = data;
+        });
+        this.memberService.getPostsByAuthorId('1').then((data) => {
+          this.nombrePublications = data.length;
+          this.posts = data;
+        });
 
         /* console.log(
           this.id +
